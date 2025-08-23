@@ -41,14 +41,14 @@ $$
 ### 기본 삼각형과 내부 점
 ![bary1](/image/Barycentric1.png)
 
-
+---
 
 
 ### 영역 비율로 표현된 공식
 ![bary2](/image/Barycentric2.png)
 
 
-
+---
 
 
 ### 그래픽스 응용 (RGB, 텍스처 매핑)
