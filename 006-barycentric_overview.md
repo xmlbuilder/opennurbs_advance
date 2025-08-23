@@ -39,13 +39,13 @@ P = \alpha A + \beta B + \gamma C, \quad \alpha + \beta + \gamma = 1
 ## 📐 시각 자료
 
 ### 기본 삼각형과 내부 점
-![bary1](sandbox:/mnt/data/d25894b9-4c4d-4d96-8687-9b8be8b2d206.png)
+![bary1](/image/Barycentric1.png)
 
 ### 영역 비율로 표현된 공식
-![bary2](sandbox:/mnt/data/b2ad51d9-8449-4a8f-8445-c326efbcd789.png)
+![bary2](/image/Barycentric2.png)
 
 ### 그래픽스 응용 (RGB, 텍스처 매핑)
-![bary3](sandbox:/mnt/data/27a3280b-2c23-45d6-bdaf-c690c2f94757.png)
+![bary3](/image/Barycentric3.png)
 
 ---
 
