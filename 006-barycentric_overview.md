@@ -45,7 +45,7 @@ $$
 
 
 ### 영역 비율로 표현된 공식
-![bary2](/image/Barycentric2.png)
+<img src="/image/Barycentric2.png" width="200">
 
 
 ---
