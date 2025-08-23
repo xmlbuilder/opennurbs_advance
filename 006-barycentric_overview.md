@@ -13,9 +13,9 @@ Barycentric Coordinates는 **삼각형 내부의 점을 표현하는 좌표계**
 ## 🧮 수학적 정의
 점 P를 삼각형의 세 정점 A, B, C의 선형 조합으로 표현합니다.
 
-\[
-P = \alpha A + \beta B + \gamma C, \quad \alpha + \beta + \gamma = 1
-\]
+$$
+P=\alpha A+\beta B+\gamma C,\quad \alpha+\beta+\gamma=1
+$$
 
 여기서 α, β, γ는 삼각형의 영역 비율을 나타냅니다.
 
