@@ -39,7 +39,7 @@ $$
 ## 📐 시각 자료
 
 ### 기본 삼각형과 내부 점
-![bary1](/image/Barycentric1.png)
+<img src="/image/Barycentric1.png" height="300">
 
 ---
 
@@ -52,7 +52,7 @@ $$
 
 
 ### 그래픽스 응용 (RGB, 텍스처 매핑)
-![bary3](/image/Barycentric3.png)
+<img src="/image/Barycentric3.png" height="300">
 
 
 
