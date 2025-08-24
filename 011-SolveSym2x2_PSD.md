@@ -90,7 +90,7 @@ $\lambda_{1,2} = \frac{a+c}{2} \;\pm\; \sqrt{\left(\frac{a-c}{2}\right)^2 + b^2}
 
 우리는 보통 다음 시스템을 풀고 싶다:
 
-![equatoin1](https://latex.codecogs.com/svg.latex?A\begin{bmatrix}x\\y\end{bmatrix}=\begin{bmatrix}f\\g\end{bmatrix})
+![eq1](https://latex.codecogs.com/svg.latex?A\begin{bmatrix}x\\y\end{bmatrix}=\begin{bmatrix}f\\g\end{bmatrix})
 
 
 즉,
@@ -105,7 +105,7 @@ $$
 만약 $\(\det(A) \neq 0\)$ :
 
 
-![equatoin2](https://latex.codecogs.com/svg.latex?\begin{bmatrix}x\\y\end{bmatrix}=\frac{1}{ac-b^2}\begin{bmatrix}c&-b\\-b&a\end{bmatrix}\begin{bmatrix}f\\g\end{bmatrix})
+![eq2](https://latex.codecogs.com/svg.latex?\begin{bmatrix}x\\y\end{bmatrix}=\frac{1}{ac-b^2}\begin{bmatrix}c&-b\\-b&a\end{bmatrix}\begin{bmatrix}f\\g\end{bmatrix})
 
 ---
 
@@ -262,6 +262,7 @@ $$
 - **PD** → 완전히 “볼록”한 행렬 (모든 방향에서 양수)  
 
 - **PSD** → “볼록하긴 하지만 일부 평평한 방향”이 존재할 수 있음
+
 
 
 
