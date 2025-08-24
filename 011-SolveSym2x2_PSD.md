@@ -118,9 +118,7 @@ $$
 만약 $\(\det(A) \neq 0\)$ :
 
 
-$$
-
-\begin{bmatrix}
+$\begin{bmatrix}
 x \\ y
 \end{bmatrix}
 =
@@ -131,9 +129,7 @@ c & -b \\
 \end{bmatrix}
 \begin{bmatrix}
 f \\ g
-\end{bmatrix}
-
-$$
+\end{bmatrix}$
 
 ---
 
@@ -290,6 +286,7 @@ $$
 - **PD** → 완전히 “볼록”한 행렬 (모든 방향에서 양수)  
 
 - **PSD** → “볼록하긴 하지만 일부 평평한 방향”이 존재할 수 있음
+
 
 
 
