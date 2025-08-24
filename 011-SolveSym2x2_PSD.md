@@ -90,13 +90,12 @@ $\lambda_{1,2} = \frac{a+c}{2} \;\pm\; \sqrt{\left(\frac{a-c}{2}\right)^2 + b^2}
 
 우리는 보통 다음 시스템을 풀고 싶다:
 
-![equation](https://latex.codecogs.com/png.image?\dpi{110}A\begin{bmatrix}x\\y\end{bmatrix}=\begin{bmatrix}f\\g\end{bmatrix})
-
 <p align="center">
   <img src="https://math.vercel.app/?from=A%5Cbegin%7Bbmatrix%7Dx%5C%5Cy%5Cend%7Bbmatrix%7D%3D%5Cbegin%7Bbmatrix%7Df%5C%5Cg%5Cend%7Bbmatrix%7D" />
-  <br/>
-  <img src="https://math.vercel.app/?from=%5Cbegin%7Bbmatrix%7Dx%5C%5Cy%5Cend%7Bbmatrix%7D%3D%5Cfrac%7B1%7D%7Bac-b%5E2%7D%5Cbegin%7Bbmatrix%7Dc%26-b%5C%5C-b%26a%5Cend%7Bbmatrix%7D%5Cbegin%7Bbmatrix%7Df%5C%5Cg%5Cend%7Bbmatrix%7D" />
 </p>
+
+
+
 
 즉,
 
@@ -109,7 +108,9 @@ $$
 
 만약 $\(\det(A) \neq 0\)$ :
 
-![equation](https://latex.codecogs.com/png.image?\dpi{110}\begin{bmatrix}x\\y\end{bmatrix}=\frac{1}{ac-b^2}\begin{bmatrix}c&-b\\-b&a\end{bmatrix}\begin{bmatrix}f\\g\end{bmatrix})
+<p align="center">
+  <img src="https://math.vercel.app/?from=%5Cbegin%7Bbmatrix%7Dx%5C%5Cy%5Cend%7Bbmatrix%7D%3D%5Cfrac%7B1%7D%7Bac-b%5E2%7D%5Cbegin%7Bbmatrix%7Dc%26-b%5C%5C-b%26a%5Cend%7Bbmatrix%7D%5Cbegin%7Bbmatrix%7Df%5C%5Cg%5Cend%7Bbmatrix%7D" />
+</p>
 
 ---
 
@@ -266,6 +267,7 @@ $$
 - **PD** → 완전히 “볼록”한 행렬 (모든 방향에서 양수)  
 
 - **PSD** → “볼록하긴 하지만 일부 평평한 방향”이 존재할 수 있음
+
 
 
 
