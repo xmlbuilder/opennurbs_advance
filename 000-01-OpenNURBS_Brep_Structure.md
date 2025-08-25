@@ -141,11 +141,13 @@ ON_BrepFaceArray   m_F; // FACE 배열
 
 ## 🔗 관계 구조
 각 요소들은 아래와 같은 관계로 연결돼 있어:
+
 ```
 FACE <-> LOOP <-> TRIM <-> EDGE <-> VERTEX
 ``
 
 각 구성 요소의 참조 관계는 다음과 같아:
+
 ```
 FACE   -> Surface
 LOOP   -> 1 Face
@@ -156,6 +158,7 @@ VERTEX -> 위치 정보만 가짐
 
 
 ## 📊 계층 구조 요약
+
 ```
 FACE
  └── LOOP
