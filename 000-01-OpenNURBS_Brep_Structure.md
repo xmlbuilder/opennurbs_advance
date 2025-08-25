@@ -144,7 +144,7 @@ ON_BrepFaceArray   m_F; // FACE 배열
 
 ```
 FACE <-> LOOP <-> TRIM <-> EDGE <-> VERTEX
-``
+```
 
 각 구성 요소의 참조 관계는 다음과 같아:
 
