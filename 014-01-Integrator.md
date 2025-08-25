@@ -53,7 +53,9 @@
 
 ### Gauss--Legendre (고정차수)
 
--   1D: ![`\int`{=tex}\_a\^b f(t),dt `\approx `{=tex}`\sum`{=tex}\_i
+-   1D:
+
+     ![`\int`{=tex}\_a\^b f(t),dt `\approx `{=tex}`\sum`{=tex}\_i
     w_i, f!`\left`{=tex}(`\tfrac{b-a}{2}`{=tex}x_i +
     `\tfrac{b+a}{2}`{=tex}`\right`{=tex})`\tfrac{b-a}{2}`{=tex}](https://math.vercel.app/?from=%5Cint_a%5Eb%20f(t)dt%20%5Capprox%20%5Csum_i%20w_i%20f((b-a)x_i/2%20%2B%20(b%2Ba)/2)%5Ccdot(b-a)/2)
 
