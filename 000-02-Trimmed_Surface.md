@@ -1,4 +1,4 @@
-# ✂️ Chapter X. Trimmed Surface
+# ✂️ Chapter 2. Trimmed Surface
 
 ## 1. 배경 (Background)
 
