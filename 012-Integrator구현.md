@@ -7,9 +7,11 @@
 ## 1) Trapezoid Rule (재귀적 세밀화)
 
 기본 사다리꼴 공식:
+
 ![trap](https://math.vercel.app/?from=T_n%20%3D%20h%5CBig%5B%5Ctfrac12%20f(a)%2B%5Csum_%7Bk%3D1%7D%5E%7Bn-1%7D%20f(a%2Bk%20h)%2B%5Ctfrac12%20f(b)%5CBig%5D%2C%5Cquad%20h%3D%5Cfrac%7Bb-a%7D%7Bn%7D)
 
 사다리꼴 값을 점점 **세밀화**하며 갱신하는 재귀형(코드의 `Trap(e)zoid`와 일치):
+
 ![trap-refine](https://math.vercel.app/?from=T_j%20%3D%200.5%20T_%7Bj-1%7D%20%2B%20h_j%20%5Csum_%7Bk%3D1%7D%5E%7B2%5E%7Bj-2%7D%7D%20f%5Cbig(a%20%2B%20(2k-1)h_j%5Cbig)%2C%5Cquad%20h_j%20%3D%20%5Cfrac%7Bb-a%7D%7B2%5E%7Bj-1%7D%7D)
 
 ---
@@ -18,9 +20,11 @@
 
 사다리꼴 값 $\(T_j\)$ 를 바탕으로, 격자간격 $\(h\to 0\)$ 으로의 외삽을 반복합니다.  
 초기값:
+
 ![romberg-base](https://math.vercel.app/?from=R_%7Bj%2C0%7D%20%3D%20T_%7B2%5Ej%7D)
 
 외삽 재귀식(코드의 `PolynomialInterpolation` 자리—표준식 표기):
+
 ![romberg-rec](https://math.vercel.app/?from=R_%7Bj%2Ck%7D%20%3D%20R_%7Bj%2Ck-1%7D%20%2B%20%5Cfrac%7BR_%7Bj%2Ck-1%7D%20-%20R_%7Bj-1%2Ck-1%7D%7D%7B4%5Ek%20-%201%7D)
 
 > 구현 메모  
@@ -28,6 +32,7 @@
 > • `QRomberg()` 내부에서 보간 입력 배열을 **1‑based**로 다루므로, 포인터 오프셋을 `+1` 해 준 점이 중요합니다.
 
 수렴 판단(상대 오차):
+
 ![stop-rel](https://math.vercel.app/?from=%7CR_%7Bj%2Ck%7D-%20R_%7Bj%2Ck-1%7D%7C%20%3C%20%5Cmathrm%7Btol%7D%5Ccdot(%7C%20R_%7Bj%2Ck%7D%20%7C%2B1))
 
 ---
@@ -35,9 +40,11 @@
 ## 3) Composite Simpson (Trapezoid 재사용)
 
 사다리꼴 두 단계 $\(T_{j-1},T_j\)$ 로 Simpson 값을 얻는 표준 관계식:
+
 ![simp-from-trap](https://math.vercel.app/?from=S_j%20%3D%20%5Cfrac%7B4T_j%20-%20T_%7Bj-1%7D%7D%7B3%7D)
 
 코드의 `QSimpsons()`는 위 식으로 $\(S_j\)$ 를 갱신하고,  
+
 ![stop-rel-s](https://math.vercel.app/?from=%7CS_j-S_%7Bj-1%7D%7C%20%3C%20%5Cmathrm%7Btol%7D%5Ccdot(%7C%20S_%7Bj-1%7D%20%7C%2B1))
 형태의 상대 오차로 종료합니다. (초기 1–2 스텝은 비교 건너뛰는 가드가 안정적)
 
@@ -460,6 +467,7 @@ double A = ON_CalcSurfaceArea(srf, srf.Domain(0), srf.Domain(1), 1e-6);
 printf("area ≈ %.12g\n", A);
 ```
 ---
+
 
 
 
