@@ -48,7 +48,7 @@
 곡선 $\(C(t)\)$ 의 길이:
 ![len-int](https://math.vercel.app/?from=L%20%3D%20%5Cint_a%5Eb%20%5C%7C%20C'(t)%20%5C%7C%20%5C%2C%20dt)
 
-구현에서 integrand는 **속도 크기** $$\(\|C'(t)\|\)$ .  
+구현에서 integrand는 **속도 크기** $\(\|C'(t)\|\)$ .  
 `ON_CalcCurveLengthByTangent()`는 도메인 전체에 대해 **Romberg**로 적분합니다.
 
 ---
@@ -460,6 +460,7 @@ double A = ON_CalcSurfaceArea(srf, srf.Domain(0), srf.Domain(1), 1e-6);
 printf("area ≈ %.12g\n", A);
 ```
 ---
+
 
 
 
