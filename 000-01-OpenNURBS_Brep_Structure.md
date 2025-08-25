@@ -1,6 +1,6 @@
-# 제 5 장. OpenNURBS의 B-rep 구조
+# 제 1 장. OpenNURBS의 B-rep 구조
 
-## 5.1 B-rep 개요
+## 1.1 B-rep 개요
 Boundary Representation (B-rep)은 3차원 형상을 **경계 곡선과 곡면**으로 표현하는 방식이다.  
 CAD 커널에서는 B-rep을 통해 기하학적 형상(Geometry)과 위상학적 구조(Topology)를 명확히 구분한다.
 
@@ -9,7 +9,7 @@ CAD 커널에서는 B-rep을 통해 기하학적 형상(Geometry)과 위상학�
 
 ---
 
-## 5.2 기하학 (Geometry)
+## 1.2 기하학 (Geometry)
 
 B-rep이 참조하는 기하학 객체들은 다음과 같다:
 
@@ -22,7 +22,7 @@ Edge는 3D 곡선 (`m_C3`)로 정의된다.
 
 ---
 
-## 5.3 위상 (Topology)
+## 1.3 위상 (Topology)
 
 Topology는 Geometry의 관계를 조직화한 것이다.  
 OpenNURBS에서는 아래의 다섯 가지 요소로 위상이 정의된다:
@@ -35,7 +35,7 @@ OpenNURBS에서는 아래의 다섯 가지 요소로 위상이 정의된다:
 
 ---
 
-## 5.4 위상 구조 다이어그램
+## 1.4 위상 구조 다이어그램
 
 ![Brep Structure](/image/brep_structure.png)
 
@@ -48,7 +48,7 @@ OpenNURBS에서는 아래의 다섯 가지 요소로 위상이 정의된다:
 
 ---
 
-## 5.5 수학적 의미
+## 1.5 수학적 의미
 
 B-rep 구조의 핵심은 **Surface의 부분 집합을 정의**하는 것이다.  
 
@@ -67,7 +67,7 @@ $$
 
 ---
 
-## 5.6 예시: Trimmed Surface
+## 1.6 예시: Trimmed Surface
 
 ### 1단계. Surface 생성
 ```cpp
