@@ -16,12 +16,13 @@
 -   **기하 적분**:
 -   
     -   곡선 길이:
-    -   
+ 
+       
         ![L = `\int`{=tex}\_a\^b
         \|C'(t)\|,dt](https://math.vercel.app/?from=L%20%3D%20%5Cint_a%5Eb%20%5C%7C%20C'(t)%20%5C%7C%20dt)
         
     -   곡면 면적:
-    -   
+        
         ![`\int`{=tex}`\int `{=tex}\|S_u
         `\times `{=tex}S_v\|,dv,du](https://math.vercel.app/?from=%5Cint_%7Bu_0%7D%5E%7Bu_1%7D%20%5Cint_%7Bv_0%7D%5E%7Bv_1%7D%20%5C%7C%20S_u%20%5Ctimes%20S_v%20%5C%7C%20dv%20du)
 
@@ -32,12 +33,12 @@
 ### Trapezoid 누적 → Romberg 외삽 (참고식)
 
 -   재귀형 사다리꼴 세밀화:
--   
+    
     ![T_j = `\tfrac12`{=tex} T\_{j-1} + h_j
     `\sum `{=tex}f(`\cdot`{=tex}),`\quad `{=tex}h_j=`\tfrac{b-a}{2^{j-1}}`{=tex}](https://math.vercel.app/?from=T_j%20%3D%200.5T_%7Bj-1%7D%20%2B%20h_j%20%5Csum%20f(...),%5Cquad%20h_j%3D%5Cfrac%7Bb-a%7D%7B2%5E%7Bj-1%7D%7D)
     
 -   Romberg 외삽:
--   
+    
     ![R\_{j,k} = R\_{j,k-1} +
     `\frac{R_{j,k-1} - R_{j-1,k-1}}{4^k - 1}`{=tex}](https://math.vercel.app/?from=R_%7Bj%2Ck%7D%20%3D%20R_%7Bj%2Ck-1%7D%20%2B%20%5Cfrac%7BR_%7Bj%2Ck-1%7D-R_%7Bj-1%2Ck-1%7D%7D%7B4%5Ek-1%7D)
     
