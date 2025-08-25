@@ -60,7 +60,7 @@ $$
 
 여기서,
 - \( D \) : Surface의 전체 파라미터 영역  
-- \( \gamma_i \) : Trim 곡선 (Loop를 이루는 곡선들)  
+- $\( \gamma_i \)$ : Trim 곡선 (Loop를 이루는 곡선들)  
 - \( F \) : Trimmed Surface  
 
 즉, Face는 NURBS Surface 위에서 Trim 곡선으로 경계가 잘린 부분이다.
