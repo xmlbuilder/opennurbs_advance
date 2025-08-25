@@ -97,7 +97,81 @@ ON_BrepFace& face = brep.NewFace(srf);
 
 ---
 
-## 5.7 요약
+## 1.7 요약
 - **Geometry**는 NURBS 곡선/곡면 데이터  
 - **Topology**는 Geometry 간 연결 구조 (Face, Loop, Trim, Edge, Vertex)  
-- Trimmed Surface는 **Surface + Loop(Trim curves)** 로 정의된다.  
+- Trimmed Surface는 **Surface + Loop(Trim curves)** 로 정의된다.
+
+---
+
+# 전체 다시 한번 요약
+
+## 📐 OpenNURBS B-rep 구조 설명
+Boundary Representation(B-rep)은 3D 객체를 경계면으로 표현하는 방식이야. OpenNURBS에서는 이를 Geometry와 Topology로 나누어 관리해.
+
+🧩 구성 요소 요약
++----------------+-----------------------------+
+|     구성 요소     |         설명                  |
++----------------+-----------------------------+
+| FACE           | 하나의 Surface를 참조함         |
+| LOOP           | FACE의 경계. 여러 TRIM을 포함    |
+| TRIM           | LOOP를 구성하는 2D 경계선       |
+| EDGE           | 3D 공간상의 경계선              |
+| VERTEX         | EDGE의 끝점                    |
++----------------+-----------------------------+
+
+
+
+## 🔧 Geometry 구조
+Geometry는 실제 곡선과 면을 정의하는 수학적 표현이야.
+ON_CurveArray m_C2; // 2D 파라메터 공간의 트림 곡선들 (TRIM에서 사용)
+ON_CurveArray m_C3; // 3D 공간의 곡선들 (EDGE에서 사용)
+ON_SurfaceArray m_S; // 파라메트릭 서피스들 (FACE에서 사용)
+
+
+
+## 🧠 Topology 구조
+Topology는 Geometry를 어떻게 연결하고 구성하는지를 나타내는 구조야.
+ON_BrepVertexArray m_V; // VERTEX 배열
+ON_BrepEdgeArray   m_E; // EDGE 배열
+ON_BrepTrimArray   m_T; // TRIM 배열
+ON_BrepLoopArray   m_L; // LOOP 배열
+ON_BrepFaceArray   m_F; // FACE 배열
+
+
+
+## 🔗 관계 구조
+각 요소들은 아래와 같은 관계로 연결돼 있어:
+FACE <-> LOOP <-> TRIM <-> EDGE <-> VERTEX
+
+
+각 구성 요소의 참조 관계는 다음과 같아:
+FACE   -> Surface
+LOOP   -> 1 Face
+TRIM   -> 2D Curve
+EDGE   -> 3D Curve
+VERTEX -> 위치 정보만 가짐
+
+
+
+## 📊 계층 구조 요약
+FACE
+ └── LOOP
+      └── TRIM
+           ├── EDGE
+           │     └── VERTEX
+           └── 2D Curve (m_C2)
+
+EDGE
+ └── 3D Curve (m_C3)
+
+FACE
+ └── Surface (m_S)
+
+
+
+## 🧭 시각적 개념 요약
+- FACE는 하나의 Surface를 참조하고, 그 경계는 LOOP로 구성됨.
+- LOOP는 여러 개의 TRIM으로 구성되며, 각각은 2D 파라메터 공간에서 경계를 정의함.
+- TRIM은 실제 3D 공간의 EDGE와 연결되며, EDGE는 두 개의 VERTEX를 가짐.
+- VERTEX는 단순히 위치 정보를 담고 있음.
