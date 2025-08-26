@@ -5,7 +5,7 @@
 
 ## 📐 Basis Function 수식이 달라지는 이유
 ### ✅ Basis Function은 Knot에 따라 정의됨
-- Basis function 4N_{i,p}(t)$ 는 재귀적으로 정의되며, 다음과 같은 수식을 따릅니다:
+- Basis function $N_{i,p}(t)$ 는 재귀적으로 정의되며, 다음과 같은 수식을 따릅니다:
 
 
 $N_{i,0}(t)$ = 
