@@ -14,7 +14,7 @@
 ### 1. ON_BezierToPowerMatrixSuperfluous (De Boor 기반)
 
 $$
-B_i^n(t) = Σ_{j=i}^{n} [ (-1)^(j - i) * C(n, i) * C(n - i, j - i) ] * t^j
+B_i^n(t) = Σ_{j=i}^{n} [ (-1)^{j - i} * C(n, i) * C(n - i, j - i) ] * t^j
 $$
 
 - $B_i^n(t)$ : i번째 Bernstein basis 함수
