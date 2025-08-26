@@ -19,7 +19,7 @@ $$
 
 - $B_i^n(t)$ : i번째 Bernstein basis 함수
 - $C(n, k)$ : 이항계수 (n choose k)
-- $(-1)^(j - i)$ : 교차 부호
+- $(-1)^{j - i}$ : 교차 부호
 - $t^j$ : Power basis 항
 
 이 수식은 Bernstein basis를 Power basis로 표현하는 정석적인 방식입니다.
