@@ -18,7 +18,7 @@ $N_{i,p}(t)$ =
 
 
 
-- 여기서 u_i는 Knot vector의 i번째 값입니다.
+- 여기서 $u_i$ 는 Knot vector의 i번째 값입니다.
 - 즉, Knot 값이 바뀌면 Basis function의 정의 구간과 형태가 완전히 달라집니다.
 
 ## 🔍 FindSpan 수식이 달라지는 이유
