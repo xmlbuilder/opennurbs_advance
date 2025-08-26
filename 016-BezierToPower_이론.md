@@ -31,13 +31,13 @@ $$
 $$
 M[m][i] = 
   if m >= i:
-    C(n, i) * C(n - i, m - i) * (-1)^(m - i)
+    $C(n, i)$ * $C(n - i, m - i)$ * $(-1)^(m - i)$
   else:
     0
 
 - M[m][i]: 변환 행렬의 m행 i열 값
-- C(n, i), C(n - i, m - i): 이항계수
-- (-1)^(m - i): 부호 처리
+- $C(n, i)$ , $C(n - i, m - i)$ : 이항계수
+- $(-1)^(m - i)$ : 부호 처리
 $$
 
 이 수식은 Power basis 항을 Bernstein basis로 표현하는 방식입니다.
