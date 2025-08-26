@@ -62,8 +62,10 @@ FindSpan의 결과가 달라지고, 그에 따라 Basis function의 활성 영�
 
 
 ## ✨ 비유로 설명하자면…
+
 Knot vector는 지도고,
 FindSpan은 내가 지금 어느 동네에 있는지 찾는 GPS,
 Basis function은 그 동네에서 어떤 건물들이 보이는지 결정하는 시야각이에요.
 Knot이 바뀌면 지도가 바뀌고, 그에 따라 GPS도 다르게 작동하고, 보이는 풍경도 달라지는 거죠.
+
 ---
