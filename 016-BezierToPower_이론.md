@@ -50,7 +50,7 @@ M[m][i] =
 |------------------|-------------------------------|-------------------------------------|
 | 기준             | Bernstein → Power             | Power ← Bernstein                   |
 | 수식 방향        | $B_i^n(t)$ → $t^j$                | $t^m$ → $B_i^n(t)$                      |
-| 부호 처리        | $(-1)^{j - i}$                  | $(-1)^(m - i)$                        |
+| 부호 처리        | $(-1)^{j - i}$                  | $(-1)^{m - i}$                        |
 | 이항계수 구조    | $C(n, i) * C(n - i, j - i)$     | $C(n, i) * C(n - i, m - i)$           |
 | 행렬 의미        | Bernstein basis → Power basis | Power basis → Bernstein basis       |
 
