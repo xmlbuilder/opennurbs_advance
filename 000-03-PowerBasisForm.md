@@ -179,6 +179,53 @@ ON_Matrix ON_BezierToPowerMatrixSuperfluous(
 }
 
 
+// --- ON_BezierCurve에서 좌표별 CV 벡터 추출 (비유리 3D만) ---
+bool ON_ExtractBezierCVPoints(
+  const ON_BezierCurve& bc,
+  std::vector<double>& Px,
+  std::vector<double>& Py,
+  std::vector<double>& Pz)
+{
+  if (bc.Dimension() != 3 || bc.IsRational()) return false;
+  const int order = bc.Order();
+  Px.resize(order); Py.resize(order); Pz.resize(order);
+  for (int i = 0; i < order; ++i)
+  {
+    const double* cv = bc.CV(i);
+    Px[i] = cv[0]; Py[i] = cv[1]; Pz[i] = cv[2];
+  }
+  return true;
+}
+
+
+// --- Power 다항식 평가 (3D) ---
+ON_3dPoint ON_EvaluatePower3D(
+  const std::vector<double>& ax,
+  const std::vector<double>& ay,
+  const std::vector<double>& az,
+  double t)
+{
+  return ON_3dPoint(ON_HornerAscending(ax, t),
+    ON_HornerAscending(ay, t),
+    ON_HornerAscending(az, t));
+}
+
+// --- 행렬 * 열벡터 ---
+std::vector<double> ON_MulMatrix(
+  const ON_Matrix& M,
+  const std::vector<double>& x)
+{
+  const int R = M.RowCount(), C = M.ColCount();
+  std::vector<double> y(R, 0.0);
+  for (int r = 0; r < R; ++r)
+  {
+    double s = 0.0;
+    for (int c = 0; c < C; ++c) s += M[r][c] * x[c];
+    y[r] = s;
+  }
+  return y;
+}
+
 ```
 
 ## 테스트 코드
@@ -254,54 +301,27 @@ int main() {
   ON::End();
   return 0;
 }
-// --- ON_BezierCurve에서 좌표별 CV 벡터 추출 (비유리 3D만) ---
-bool ON_ExtractBezierCVPoints(
-  const ON_BezierCurve& bc,
-  std::vector<double>& Px,
-  std::vector<double>& Py,
-  std::vector<double>& Pz)
-{
-  if (bc.Dimension() != 3 || bc.IsRational()) return false;
-  const int order = bc.Order();
-  Px.resize(order); Py.resize(order); Pz.resize(order);
-  for (int i = 0; i < order; ++i)
-  {
-    const double* cv = bc.CV(i);
-    Px[i] = cv[0]; Py[i] = cv[1]; Pz[i] = cv[2];
-  }
-  return true;
-}
 
+```
 
-// --- Power 다항식 평가 (3D) ---
-ON_3dPoint ON_EvaluatePower3D(
-  const std::vector<double>& ax,
-  const std::vector<double>& ay,
-  const std::vector<double>& az,
-  double t)
-{
-  return ON_3dPoint(ON_HornerAscending(ax, t),
-    ON_HornerAscending(ay, t),
-    ON_HornerAscending(az, t));
-}
+# 출력 결과
 
-// --- 행렬 * 열벡터 ---
-std::vector<double> ON_MulMatrix(
-  const ON_Matrix& M,
-  const std::vector<double>& x)
-{
-  const int R = M.RowCount(), C = M.ColCount();
-  std::vector<double> y(R, 0.0);
-  for (int r = 0; r < R; ++r)
-  {
-    double s = 0.0;
-    for (int c = 0; c < C; ++c) s += M[r][c] * x[c];
-    y[r] = s;
-  }
-  return y;
-}
-
-
+```
+Degree n=1
+  max |CV - recon(CV)| = 0
+  max |Bezier - Power| = 0
+Degree n=2
+  max |CV - recon(CV)| = 0
+  max |Bezier - Power| = 1.11022e-16
+Degree n=3
+  max |CV - recon(CV)| = 0
+  max |Bezier - Power| = 6.28037e-16
+Degree n=5
+  max |CV - recon(CV)| = 1.42109e-14
+  max |Bezier - Power| = 3.9968e-15
+Degree n=7
+  max |CV - recon(CV)| = 1.13687e-13
+  max |Bezier - Power| = 1.95399e-14
 ```
 
 ---
