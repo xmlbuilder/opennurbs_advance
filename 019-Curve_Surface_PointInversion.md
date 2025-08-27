@@ -28,8 +28,8 @@
 헤시안 근사 $\(h(u)=\frac{d^2E}{du^2} = C'(u)\cdot C'(u) + r\cdot C''(u)\)$
 
 $$
-u_{k+1} \;=\; u_k \;-\; \frac{g(u_k)}{h(u_k)}
-\;=\; u_k \;-\; \frac{ r\cdot C'(u_k) }{ \, \|C'(u_k)\|^2 + r\cdot C''(u_k) \, }.
+u_{k+1} = u_k - \frac{g(u_k)}{h(u_k)}
+= u_k - \frac{ r\cdot C'(u_k) }{ \, \|C'(u_k)\|^2 + r\cdot C''(u_k) \, }.
 $$
 
 - 분모가 아주 작거나 부호가 불안정하면 **스텝 축소/백트래킹** 또는 **LM(아래)** 사용.
@@ -37,14 +37,14 @@ $$
 ### 1.2 가우스-뉴턴(Gauss–Newton, GN)
 헤시안을 완전 계산하지 않고 2차 항을 버린 근사:
 $$
-u_{k+1} \;=\; u_k \;-\; \frac{ r\cdot C' }{ \|C'\|^2 }.
+u_{k+1} = u_k - \frac{ r\cdot C' }{ \|C'\|^2 }.
 $$
 - 곡률이 강하거나 P가 멀리 있으면 수렴성이 떨어질 수 있음.
 
 ### 1.3 레벤버그–마쿼르트(Levenberg–Marquardt, LM)
 뉴턴/ GN의 불안정성을 막기 위해 정규화 λ를 도입:
 $$
-(\, \|C'\|^2 + \lambda \,) \, \Delta u \;=\; -\, r\cdot C', 
+(\, \|C'\|^2 + \lambda \,) \, \Delta u = -\, r\cdot C', 
 \quad u_{k+1} = u_k + \Delta u.
 $$
 - λ는 **작아지면 뉴턴/GN**, **커지면 경사하강**에 가까움.
