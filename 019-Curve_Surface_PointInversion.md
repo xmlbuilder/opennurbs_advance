@@ -41,7 +41,7 @@ $u_{k+1} = u_k - \frac{ r\cdot C' }{ \|C'\|^2 }.$
 
 ### 1.3 레벤버그–마쿼르트(Levenberg–Marquardt, LM)
 뉴턴/ GN의 불안정성을 막기 위해 정규화 λ를 도입:
-$( \|C'\|^2 + \lambda ) \, \Delta u = - r\cdot C', \quad u_{k+1} = u_k + \Delta u.$
+$( \|C'\|^2 + \lambda )  \Delta u = - r\cdot C', \quad u_{k+1} = u_k + \Delta u.$
 - λ는 **작아지면 뉴턴/GN**, **커지면 경사하강**에 가까움.
 - 수용 여부에 따라 λ를 줄이거나(성공) 늘림(거절).
 
@@ -68,7 +68,7 @@ H \;=\;
 S_u\cdot S_u + r\cdot S_{uu} & S_u\cdot S_v + r\cdot S_{uv} \\[2pt]
 S_u\cdot S_v + r\cdot S_{uv} & S_v\cdot S_v + r\cdot S_{vv}
 \end{bmatrix},\quad
-H\,\begin{bmatrix}\Delta u\\ \Delta v\end{bmatrix} \;=\; -g.
+H\,\begin{bmatrix}\Delta u\\ \Delta v\end{bmatrix} = -g.
 $$
 
 - 2차 미분까지 쓰므로 빠를 수 있으나, **극/퇴화**에서 불안정.
@@ -129,7 +129,7 @@ $$
 
 ### 2.10 투영 판정(옵션)
 최근접 투영으로서의 직교성:
-- $\(|S_u \cdot \hat r| \ll 1,\; |S_v \cdot \hat r| \ll 1\)$  ( $\(\hat r=r/\|r\|\)$ )
+- $\(|S_u \cdot \hat r| \ll 1, |S_v \cdot \hat r| \ll 1\)$  ( $\(\hat r=r/\|r\|\)$ )
 
 ---
 
