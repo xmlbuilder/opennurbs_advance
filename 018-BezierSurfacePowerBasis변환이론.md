@@ -31,7 +31,7 @@ $$
 
 1D Bézier basis와 Power basis 사이에는 **선형 변환**이 존재한다.  
 - Bézier basis $\([B_0^n, \dots, B_n^n]\)$ 와  
-- Power basis $ \([1, t, t^2, \dots, t^n]\)$ 사이 변환:
+- Power basis $\([1, t, t^2, \dots, t^n]\)$ 사이 변환:
 
 $$
 [B_0^n(t), B_1^n(t), \dots, B_n^n(t)]^T = M_{B\to P} \cdot [1, t, t^2, \dots, t^n]^T
@@ -103,6 +103,7 @@ $$
   - 차이: ~\(5 \times 10^{-16}\)
 
 즉, 이론대로 구현이 정확히 동작함을 확인할 수 있다.
+
 
 
 
