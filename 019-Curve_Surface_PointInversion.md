@@ -29,7 +29,7 @@
 
 $$
 u_{k+1} = u_k - \frac{g(u_k)}{h(u_k)}
-= u_k - \frac{ r\cdot C'(u_k) }{ \, \|C'(u_k)\|^2 + r\cdot C''(u_k) \, }.
+= u_k - \frac{ r\cdot C'(u_k) }{  \|C'(u_k)\|^2 + r\cdot C''(u_k)  }.
 $$
 
 - 분모가 아주 작거나 부호가 불안정하면 **스텝 축소/백트래킹** 또는 **LM(아래)** 사용.
