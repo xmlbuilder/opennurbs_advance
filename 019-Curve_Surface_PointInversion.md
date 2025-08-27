@@ -60,7 +60,7 @@ $( \|C'\|^2 + \lambda )  \Delta u = - r\cdot C', \quad u_{k+1} = u_k + \Delta u.
 $\(E(u,v)=\frac{1}{2}\|r(u,v)\|^2\)$, 
 $\(r=S(u,v)-P\)$.  
 자코비안 $\(J=[S_u\; S_v]\in\mathbb{R}^{3\times 2}\)$,  
-그레디언트 $g = J^T r = \begin{bmatrix} S_u\cdot r \\ S_v\cdot r \end{bmatrix}$.
+그레디언트 $\(g = J^T r = \begin{bmatrix} S_u\cdot r \\ S_v\cdot r \end{bmatrix}\)$.
 
 ### 2.2 뉴턴(Full Newton) / 유사-헤시안
 $$
