@@ -76,6 +76,7 @@ $$
 
 ### 2.3 가우스-뉴턴(GN)
 헤시안의 2차 잔차항을 생략:
+```latex
 $$
 (J^T J)\,\Delta = -g, \qquad
 J^T J =
@@ -84,7 +85,7 @@ S_u\cdot S_u & S_u\cdot S_v \\[2pt]
 S_u\cdot S_v & S_v\cdot S_v
 \end{bmatrix}.
 $$
-
+```
 - 안정적이지만, 강한 비선형/초기치가 나쁠 때는 느릴 수 있음.
 
 ### 2.4 레벤버그–마쿼르트(LM)
