@@ -41,7 +41,7 @@ $u_{k+1} = u_k - \frac{ r\cdot C' }{ \|C'\|^2 }.$
 
 ### 1.3 레벤버그–마쿼르트(Levenberg–Marquardt, LM)
 뉴턴/ GN의 불안정성을 막기 위해 정규화 λ를 도입:
-$(\, \|C'\|^2 + \lambda \,) \, \Delta u = -\, r\cdot C', \quad u_{k+1} = u_k + \Delta u.$
+$( \|C'\|^2 + \lambda ) \, \Delta u = - r\cdot C', \quad u_{k+1} = u_k + \Delta u.$
 - λ는 **작아지면 뉴턴/GN**, **커지면 경사하강**에 가까움.
 - 수용 여부에 따라 λ를 줄이거나(성공) 늘림(거절).
 
