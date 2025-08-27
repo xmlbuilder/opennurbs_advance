@@ -60,7 +60,7 @@ $( \|C'\|^2 + \lambda )  \Delta u = - r\cdot C', \quad u_{k+1} = u_k + \Delta u.
 $\(E(u,v)=\frac{1}{2}\|r(u,v)\|^2\)$, 
 $\(r=S(u,v)-P\)$.  
 자코비안 $\(J=[S_u\; S_v]\in\mathbb{R}^{3\times 2}\)$,  
-그레디언트 $\(g = J^T r = \begin{bmatrix} S_u\cdot r \\ S_v\cdot r \end{bmatrix}\)$.
+그레디언트 $g = J^T r = \begin{bmatrix} S_u\cdot r \\ S_v\cdot r \end{bmatrix}$.
 
 ### 2.2 뉴턴(Full Newton) / 유사-헤시안
 $$
@@ -76,7 +76,7 @@ $$
 
 ### 2.3 가우스-뉴턴(GN)
 헤시안의 2차 잔차항을 생략:
-```latex
+
 $$
 (J^T J)\,\Delta = -g, \qquad
 J^T J =
@@ -85,7 +85,7 @@ S_u\cdot S_u & S_u\cdot S_v \\[2pt]
 S_u\cdot S_v & S_v\cdot S_v
 \end{bmatrix}.
 $$
-```
+
 - 안정적이지만, 강한 비선형/초기치가 나쁠 때는 느릴 수 있음.
 
 ### 2.4 레벤버그–마쿼르트(LM)
