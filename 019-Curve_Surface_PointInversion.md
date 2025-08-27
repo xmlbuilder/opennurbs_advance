@@ -57,7 +57,8 @@ $( \|C'\|^2 + \lambda )  \Delta u = - r\cdot C', \quad u_{k+1} = u_k + \Delta u.
 ## 2) 곡면 Point Inversion
 
 ### 2.1 정식화
-$\(E(u,v)=\frac{1}{2}\|r(u,v)\|^2\)$, $\(r=S(u,v)-P\)$.  
+$\(E(u,v)=\frac{1}{2}\|r(u,v)\|^2\)$, 
+$\(r=S(u,v)-P\)$.  
 자코비안 $\(J=[S_u\; S_v]\in\mathbb{R}^{3\times 2}\)$,  
 그레디언트 $\(g = J^T r = \begin{bmatrix} S_u\cdot r \\ S_v\cdot r \end{bmatrix}\)$.
 
