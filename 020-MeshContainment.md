@@ -9,7 +9,7 @@
 ## 0) 표기
 
 * 메쉬: $A, B$ (경계는 $\partial A$).
-* 길이 스케일: $\L = \max(\operatorname{diag}(\text{AABB}_A), \operatorname{diag}(\text{AABB}_B)\$.
+* 길이 스케일: $L = \max\left(\operatorname{diag}(\text{AABB}_A),\ \operatorname{diag}(\text{AABB}_B)\right)$.
 * 공차: $\tau_{\text{dist}} = 10^{-7}\,L$, $\varepsilon_V = 10^{-12}\,L^3$ (프로젝트 스케일에 맞게 1e−8\~1e−6 조정).
 
 **ASCII**: `tau_dist = 1e-7 * L`, `epsV = 1e-12 * L^3`.
