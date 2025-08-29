@@ -126,7 +126,7 @@ mesh_curve_param(C, pos3D, N0, N1, u0, u1,
 
 ## 개념도
 
-
+![CurveMeshParam_Concept](/image/CurveMeshParam.png)
 
 ## 전체 코드
 ```cpp
