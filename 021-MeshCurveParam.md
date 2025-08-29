@@ -44,7 +44,7 @@ int mesh_curve_param(
 
 ```mermaid
 flowchart TD
-  A[입력: 곡선 C, u0,u1, target_h, max_ce, gradation] --> B[초기 세그 생성 (끝점 2개)]
+  A[입력: 곡선 C, u0, u1, target_h, max_ce, gradation] --> B[초기 세그 생성 (끝점 2개)]
   B --> C[우선순위 큐 초기화 (세그 score)]
   C --> D{큐 empty?}
   D -- 아니오 --> E[큐 top 세그 꺼냄]
