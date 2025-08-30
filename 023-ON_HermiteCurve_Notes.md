@@ -215,9 +215,303 @@ ON_HermiteCurve Hoff(3, H, n, delta);
 ```
 
 ---
+## 10) 소스 코드
+```cpp
 
-**GitHub 수식 팁**  
-- 인라인 수식: `\( a+b \)`  
-- 블록 수식: 빈 줄 + `$$` ... `$$`  
-- 절댓값/노름: `\lvert v \rvert`, `\lVert v \rVert`  
+
+class ON_CLASS ON_HermiteCurve 
+{
+private:
+  ON_3dPoint        m_vP1;  // Initial point
+  ON_3dVector       m_vD1;  // Initial direction
+  ON_3dPoint        m_vP2;  // Final point
+  ON_3dVector       m_vD2;  // Final direction
+  
+  ON_3dVector       m_vC;   // C of power basis eqn.
+  ON_3dVector       m_vD;   // D of power basis eqn.
+  int               m_dim;
+
+public:
+  
+  ON_HermiteCurve(const ON_3dPoint& crP1,
+    const ON_3dVector& crV1,
+    const ON_3dPoint& crP2,
+    const ON_3dVector& crV2,
+    int lDimension = 3);
+
+  ON_HermiteCurve(const ON_2dPoint& crP1,
+    const ON_2dVector& crV1,
+    const ON_2dPoint& crP2,
+    const ON_2dVector& crV2,
+    int lDimension = 2);
+
+  ON_HermiteCurve(int lDimension,
+    const ON_HermiteCurve& crHermiteToOffset,
+    const ON_3dVector& crOffsetPlaneNormal,
+    double dOffsetDistance);
+
+  virtual ~ON_HermiteCurve() {}
+
+
+  bool IsValid() const;
+
+  virtual bool CalculateBoundingBox(ON_BoundingBox& tight_bbox,
+    bool bGrowBox,
+    const ON_Xform* xform
+  ) const;
+
+  void GetBezierPoints(ON_3dPoint& rP1,
+    ON_3dPoint& rP2,
+    ON_3dPoint& rP3,
+    ON_3dPoint& rP4) const;
+
+  virtual ON_Interval GetNaturalInterval() const
+  {
+    return ON_Interval(0.0, 1.0);
+  }
+
+  virtual bool Evaluate(double dParameter,
+    int lNumDerivatives,
+    bool bFromLeft,
+    ON_3dPoint aPointAndDerivatives[]) const;
+
+  virtual bool EvaluatePoint(double dParameter, ON_3dPoint& rPoint) const;
+
+  bool GetBezierCurve(ON_BezierCurve& bezierCurve) const;
+  bool GetNurbForm(ON_NurbsCurve& nurbsCurve) const;
+
+};
+
+inline ON_HermiteCurve::ON_HermiteCurve(
+  const ON_3dPoint& crP1,
+  const ON_3dVector& crD1,
+  const ON_3dPoint& crP2,
+  const ON_3dVector& crD2,
+  int lDimension)
+  : m_vP1(crP1), m_vD1(crD1), m_vP2(crP2), m_vD2(crD2), m_dim(lDimension)
+{
+  // Store C and D of power form
+  m_vC = -3.0 * m_vP1 - 2.0 * m_vD1 + 3.0 * m_vP2 - m_vD2;
+  m_vD = 2.0 * m_vP1 + m_vD1 - 2.0 * m_vP2 + m_vD2;
+}
+
+inline ON_HermiteCurve::ON_HermiteCurve(const ON_2dPoint& crP1,
+  const ON_2dVector& crD1,
+  const ON_2dPoint& crP2,
+  const ON_2dVector& crD2,
+  int lDimension)
+  : m_vP1(crP1), m_vD1(crD1), m_vP2(crP2), m_vD2(crD2), m_dim(lDimension)
+{
+  // Store C and D of power form
+  m_vC = -3.0 * m_vP1 - 2.0 * m_vD1 + 3.0 * m_vP2 - m_vD2;
+  m_vD = 2.0 * m_vP1 + m_vD1 - 2.0 * m_vP2 + m_vD2;
+}
+
+inline void ON_HermiteCurve::GetBezierPoints(ON_3dPoint& rP1,
+  ON_3dPoint& rP2,
+  ON_3dPoint& rP3,
+  ON_3dPoint& rP4) const
+{
+  rP1 = m_vP1;
+  rP2 = m_vP1 + m_vD1 / 3.0;
+  rP3 = m_vP2 - m_vD2 / 3.0;
+  rP4 = m_vP2;
+}
+```
+
+```cpp
+#include "opennurbs.h"
+
+ON_HermiteCurve::ON_HermiteCurve(int lDimension,
+  const ON_HermiteCurve& crHermiteToOffset,
+  const ON_3dVector& crOffsetPlaneNormal,
+  double dOffsetDistance)
+  : m_dim(lDimension)
+{
+  ON_3dVector sN = crOffsetPlaneNormal;
+  sN.Unitize();
+
+  // Convert to Bezier form
+  ON_3dPoint sP0 = crHermiteToOffset.m_vP1;
+  ON_3dPoint sP1 = crHermiteToOffset.m_vP1 + crHermiteToOffset.m_vD1 / 3.0;
+  ON_3dPoint sP2 = crHermiteToOffset.m_vP2 - crHermiteToOffset.m_vD2 / 3.0;
+  ON_3dPoint sP3 = crHermiteToOffset.m_vP2;
+
+  // Compute a
+  ON_3dVector a0 = sP1 - sP0;
+  ON_3dVector a1 = sP2 - sP1;
+  ON_3dVector a2 = sP3 - sP2;
+  ON_3dVector a3 = sP3 - sP0;
+
+  if (a0.LengthSquared() < ON_EPSILON) return;
+  if (a2.LengthSquared() < ON_EPSILON) return;
+
+  // Compute a0 Transpose and a2 Transpose
+  ON_3dVector a0T = ON_CrossProduct(a0, crOffsetPlaneNormal);
+  ON_3dVector a2T = ON_CrossProduct(a2,  crOffsetPlaneNormal);
+  if (a0T.LengthSquared() < ON_EPSILON) return;
+  if (a2T.LengthSquared() < ON_EPSILON) return;
+
+  a0T.Unitize();
+  a2T.Unitize();
+
+  // Test for first case where all points are on same line (relative to offset plane
+  // projection.
+  double d = dOffsetDistance;
+  ON_3dPoint sQ0, sQ1, sQ2, sQ3;
+  sQ0 = sP0 + d * a0T;
+  sQ3 = sP3 + d * a2T;
+  if (fabs(ON_DotProduct(a1, a0T)) < ON_EPSILON && fabs(ON_DotProduct(a2, a0T)) < ON_EPSILON) {
+    // Have straight line.
+    sQ1 = sP1 + d * a0T;
+    sQ2 = sP2 + d * a2T;
+  }
+  else if (fabs(ON_DotProduct(a2, a0T)) < ON_EPSILON) {
+    // Have case where end edges of control polygon are parallel
+    sQ1 = sP1 + d * a0T + (8.0 * d / 3.0) * a0 / (a0.Length() + a2.Length());
+    sQ2 = sP2 + d * a2T - (8.0 * d / 3.0) * a2 / (a0.Length() + a2.Length());
+  }
+  else {
+    // Have standard Bezier offset case
+    // Compute V
+
+    ON_3dVector a1a3 = a1 + a3;
+    if (a1a3.LengthSquared() < ON_EPSILON) return;
+
+    ON_3dVector V = 2.0 * (a1 + a3) / a1a3.Length() - a0 / a0.Length() - a2 / a2.Length();
+    sQ1 = sP1 + d * a0T + (4.0 * d / 3.0) * ((ON_DotProduct(V, a2)) / (ON_DotProduct(a0, a2T * a2.Length()))) * a0;
+    sQ2 = sP2 + d * a2T + (4.0 * d / 3.0) * ((ON_DotProduct(V, a0)) / (ON_DotProduct(a2, a0T * a0.Length()))) * a2;
+  }
+
+  m_vP1 = sQ0;
+  m_vD1 = 3.0 * (sQ1 - sQ0);
+  m_vP2 = sQ3;
+  m_vD2 = 3.0 * (sQ3 - sQ2);
+  m_vC = -3.0 * m_vP1 - 2.0 * m_vD1 + 3.0 * m_vP2 - m_vD2;
+  m_vD = 2.0 * m_vP1 + m_vD1 - 2.0 * m_vP2 + m_vD2;
+}
+
+bool ON_HermiteCurve::IsValid() const
+{
+  if (!m_vP1.IsValid() || !m_vP2.IsValid())
+    return false;
+  if (!m_vD1.IsValid() || !m_vD2.IsValid())
+    return false;
+  if (!m_vC.IsValid() || !m_vD.IsValid())
+    return false;
+
+  return m_dim == 2 || m_dim == 3;
+}
+
+bool ON_HermiteCurve::CalculateBoundingBox(ON_BoundingBox& tight_bbox,
+  bool bGrowBox,
+  const ON_Xform* xform
+) const
+{
+ 
+  // Compute Bezier polygon for Hermite and use points to compute bounding
+  // boxes.
+  ON_3dVector sPnts[4];
+  sPnts[0] = m_vP1;
+  sPnts[1] = m_vP1 + m_vD1 / 3.0;
+  sPnts[2] = m_vP2 - m_vD2 / 3.0;
+  sPnts[3] = m_vP2;
+
+  if (bGrowBox && !tight_bbox.IsValid())
+  {
+    bGrowBox = false;
+  }
+  
+  if (xform != nullptr && !xform->IsIdentity())
+  {
+    for (int i = 0; i < 4; i++)
+    {
+      sPnts[i].Transform(*xform);
+      tight_bbox.Set(sPnts[i], true);
+    }
+  }
+  return true;
+}
+
+bool ON_HermiteCurve::Evaluate(
+  double dParameter,
+  int lNumDerivatives,
+  bool,
+  ON_3dPoint aPointAndDerivatives[]) const
+{
+  // Initialize derivatives requested greater than third
+  for (int i = 4; i < lNumDerivatives; i++) {
+    aPointAndDerivatives[i].x = 0.0;
+    aPointAndDerivatives[i].y = 0.0;
+    aPointAndDerivatives[i].z = 0.0;
+  }
+
+  const ON_3dVector& A = m_vP1;
+  const ON_3dVector& B = m_vD1;
+  const ON_3dVector& C = m_vC;
+  const ON_3dVector& D = m_vD;
+
+  double u = dParameter;
+
+  // Compute position
+  aPointAndDerivatives[0] = A + u * (B + u * (C + u * D));
+
+  if (lNumDerivatives >= 1) {
+    aPointAndDerivatives[1] = B + u * (2.0 * C + 3.0 * u * D);
+  }
+  if (lNumDerivatives >= 2) {
+    aPointAndDerivatives[2] = 2.0 * C + 6.0 * u * D;
+  }
+  if (lNumDerivatives >= 3) {
+    aPointAndDerivatives[3] = 6.0 * D;
+  }
+  return true;
+}
+
+bool ON_HermiteCurve::EvaluatePoint(double dParameter, ON_3dPoint& rPoint) const
+{
+  const ON_3dVector& A = m_vP1;
+  const ON_3dVector& B = m_vD1;
+  const ON_3dVector& C = m_vC;
+  const ON_3dVector& D = m_vD;
+
+  double u = dParameter;
+  rPoint = A + u * (B + u * (C + u * D));
+
+  return true;
+}
+
+bool ON_HermiteCurve::GetBezierCurve(ON_BezierCurve& bezierCurve) const
+{
+  if (!IsValid()) return false;
+
+  ON_3dPointArray points(4);
+  points.SetCount(4);
+  points[0] = m_vP1;
+  points[1] = m_vP1 + m_vD1 / 3.0;
+  points[2] = m_vP2 - m_vD2 / 3.0;
+  points[3] = m_vP2;
+  bezierCurve = ON_BezierCurve(points);
+  return bezierCurve.IsValid();
+}
+
+bool ON_HermiteCurve::GetNurbForm(ON_NurbsCurve& nurbsCurve) const
+{
+  if (!IsValid()) return false;
+
+  ON_3dPointArray points(4);
+  points.SetCount(4);
+  points[0] = m_vP1;
+  points[1] = m_vP1 + m_vD1 / 3.0;
+  points[2] = m_vP2 - m_vD2 / 3.0;
+  points[3] = m_vP2;
+  ON_BezierCurve bezierCurve = ON_BezierCurve(points);
+  bezierCurve.GetNurbForm(nurbsCurve);
+  return nurbsCurve.IsValid();
+}
+
+
+```
+
+---
 
