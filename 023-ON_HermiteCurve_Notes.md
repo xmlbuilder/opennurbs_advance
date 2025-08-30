@@ -106,7 +106,7 @@ $$
 특별 생성자
 
 $$
-\mathrm{ON_HermiteCurve}(d,\;\text{curve},\;n,\;\delta)
+\texttt{ON\_HermiteCurve}(d,\;\text{curve},\;n,\;\delta)
 $$
 
 
