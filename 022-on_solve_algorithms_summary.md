@@ -10,15 +10,29 @@
 
 ### 식
 - 잔차:  
-  \[ r = C_a(t_a) - C_b(t_b) \]
-- 야코비안(3×2):  
-  \[ J = [C_a'(t_a), -C_b'(t_b)] \]
+
+  $$
+  r = C_a(t_a) - C_b(t_b)
+  $$
+
+- 야코비안(3×2):
+-   
+  $$
+  J = [C_a'(t_a), -C_b'(t_b)]
+  $$
 
 ### 커플드 뉴턴 보정
 - Normal equations (Levenberg 감쇠):  
-  \[ (J^T J + \lambda I) \Delta = -J^T r \]
+
+  $$
+  (J^T J + \lambda I) \Delta = -J^T r
+  $$
+  
 - 업데이트:  
-  \[ t_a \leftarrow t_a + \Delta_0, \quad t_b \leftarrow t_b + \Delta_1 \]
+
+  $$
+   t_a \leftarrow t_a + \Delta_0, \quad t_b \leftarrow t_b + \Delta_1
+  $$
 
 ### 가속
 - 곡선 B를 세그먼트 bbox(RTree)로 분할 → 근방 세그먼트만 검사.
@@ -30,16 +44,31 @@
 - **목표**: 곡선 `C(t)`와 표면 `S(u,v)`의 교차점 찾기.
 
 ### 식
-- 잔차:  
-  \[ r = C(t) - S(u,v) \]
-- 야코비안(3×3):  
-  \[ J = [C'(t), -S_u(u,v), -S_v(u,v)] \]
+- 잔차:
+
+  $$
+  r = C(t) - S(u,v)
+
+ $$
+- 야코비안(3×3):
+  
+  $$
+  J = [C'(t), -S_u(u,v), -S_v(u,v)]
+  $$
 
 ### 커플드 뉴턴 보정
-- Normal equations:  
-  \[ (J^T J + \lambda I) \Delta = -J^T r \]
+- Normal equations:
+   
+  $$
+  (J^T J + \lambda I) \Delta = -J^T r
+  $$
+
 - 업데이트:  
-  \[ t \leftarrow t + \Delta_t, \quad u \leftarrow u + \Delta_u, \quad v \leftarrow v + \Delta_v \]
+
+  $$
+  t \leftarrow t + \Delta_t, \quad u \leftarrow u + \Delta_u, \quad v \leftarrow v + \Delta_v
+  $$
+  
 
 ### 가속
 - 표면을 (Nu×Nv) 셀로 분할, 각 bbox를 RTree에 삽입 → 후보 셀만 검사.
@@ -48,30 +77,53 @@
 
 ## 3. Surface–Surface (SS) 교차 (추적 기반)
 
-- **목표**: 두 표면 `S_A(u,v)`, `S_B(p,q)`의 교차 곡선 추적.
+- **목표**: 두 표면 $`S_A(u,v)`$, $`S_B(p,q)`$ 의 교차 곡선 추적.
 
 ### 식
 - 잔차:  
-  \[ r = S_A(u,v) - S_B(p,q) \]
-- 야코비안(3×4):  
-  \[ J = [S_{Au}, S_{Av}, -S_{Bp}, -S_{Bq}] \]
+
+  $$
+  r = S_A(u,v) - S_B(p,q)
+  $$
+  
+- 야코비안(3×4):
+    
+  $$
+  J = [S_{Au}, S_{Av}, -S_{Bp}, -S_{Bq}]
+  $$
 
 ### 커플드 뉴턴 보정 (최소제곱)
-- Normal equations:  
-  \[ (J^T J + \lambda I) \Delta = -J^T r \]
+- Normal equations:
+   
+  $$
+  (J^T J + \lambda I) \Delta = -J^T r
+  $$
+  
 - 업데이트:  
-  \[ (u,v,p,q) \leftarrow (u,v,p,q) + \Delta \]
+
+  $$
+  (u,v,p,q) \leftarrow (u,v,p,q) + \Delta
+  $$
+  
 
 ### 추적 알고리즘 (Predictor–Corrector)
 1. **Seed 수집**: A 표면을 샘플링 후 B에 투영, 거리 ≤ tol 포인트 채택 → 클러스터링으로 중복 제거.
 2. **탱전트 예측**:  
-   \[ t = \frac{n_A \times n_B}{\|n_A \times n_B\|} \]  
+
+   $$
+   t = \frac{n_A \times n_B}{\|n_A \times n_B\|}
+   $$
+    
    (법선의 외적)
-3. **예측**:  
-   \[ C_{pred} = C + t \cdot h \]  
+4. **예측**:  
+
+   $$
+   C_{pred} = C + t \cdot h
+   $$
+     
    (h: 스텝 크기)
-4. **보정**: `C_pred`를 양 표면에 최근접 투영, 중점 반복 보정 → 간극 작으면 h 증가, 크면 h 감소.
-5. **양방향 추적**: dir = ±1 두 방향으로 확장, 시작점 근처 되돌아오면 클로즈 처리.
+6. **보정**: $`C_pred`$ 를 양 표면에 최근접 투영, 중점 반복 보정 → 간극 작으면 h 증가, 크면 h 감소.
+7. **양방향 추적**: dir = ±1 두 방향으로 확장, 시작점 근처 되돌아오면 클로즈 처리.
 
 ---
 
