@@ -107,11 +107,12 @@ J = [S_{Au}, S_{Av}, -S_{Bp}, -S_{Bq}]
 
 ### 추적 알고리즘 (Predictor–Corrector)
 1. **Seed 수집**: A 표면을 샘플링 후 B에 투영, 거리 ≤ tol 포인트 채택 → 클러스터링으로 중복 제거.  
-2. **탱전트 예측**:  
+2. **탄젠트 예측**:  
 
-```math
-t = rac{n_A 	imes n_B}{\|n_A 	imes n_B\|}
-```
+$$
+t = \frac{n_A \times n_B}{\| n_A \times n_B \|}
+$$
+
 
 3. **예측**:  
 
