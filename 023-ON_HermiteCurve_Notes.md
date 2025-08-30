@@ -106,8 +106,9 @@ $$
 특별 생성자
 
 $$
-\mathrm{ON\_HermiteCurve}(d,\;\text{curve},\;n,\;\delta)
+\texttt{ON\_HermiteCurve}(d,\;\text{curve},\;n,\;\delta)
 $$
+
 
 는 기준 Hermite 곡선(`curve`)을 같은 **오프셋 평면 법선** $n$에 대해 거리 $\delta$만큼 오프셋한 곡선을 생성합니다.
 
